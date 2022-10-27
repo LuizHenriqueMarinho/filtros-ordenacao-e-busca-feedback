@@ -31,6 +31,14 @@ const Header = (props) => {
     props.setIdFilter(e.target.value);
   };
 
+   const handleTypeSearch = (e) => {
+    props.setTypeFilter(e.target.value);
+   }
+
+   const handleABCSearch = (e) => {
+    props.setSortABC(e.target.value);
+   }
+
   return (
     <Container>
         <input
@@ -45,19 +53,20 @@ const Header = (props) => {
         onChange={handleSearch}
         value={props.pesquisa}
       />
-      <select>
+      <select onChange={handleABCSearch}>
         <option value="">Ordenar</option>
-        <option value="">Crescente</option>
-        <option value="">Decrescente</option>
+        <option value="Crescente">Crescente</option>
+        <option value="Decrescente">Decrescente</option>
       </select>
-      <select
+      <select value={props.type} onChange={handleTypeSearch}
         name="tipo"
         id="tipo"
           >
-        <option value="">Selecione um tipo</option>
+        <option  value="">Selecione um tipo</option>
         {pokemontypesArray.map((type) => {
           return (
-            <option key={type} value={type}>
+            <option key={type} value={type} >
+              {console.log(type)}
               {type}
             </option>
           );
@@ -65,6 +74,7 @@ const Header = (props) => {
       </select>
     </Container>
   );
+
 };
 
 export default Header;
